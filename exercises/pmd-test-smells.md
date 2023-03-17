@@ -15,3 +15,20 @@ Include the improved test code in this file.
 
 ## Answer
 
+Here the liste of PMD rules and the test smells that implement them :
+
+- DetachedTestCase : "The Free Ride" ;
+- UseAssertTrueInsteadOfAssertEquals, UseAssertSameInsteadOfAssertTrue, UseAssertNullInsteadOfAssertTrue, and UseAssertEqualsInsteadOfAssertTrue : "Assertion roulette" ;
+- JUnitUseExpected : "Manual intervention" ;
+- JUnitTestsShouldIncludeAssert and JUnitTestContainsTooManyAsserts : "Eager test" and "Assertion roulette" ;
+- JUnitStaticSuite : "Interacting Tests" ;
+- JUnitAssertionsShouldIncludeMessage : "Assertion roulette" .
+
+We use the JUnitTestsShouldIncludeAssert rule to detect test smells in [Apache Commons Math](https://github.com/apache/commons-math).
+The command line :
+
+```
+pmd/bin/run.sh pmd -d Documents/VV/commons-math/ -R category/java/bestpractices.xml/JUnitTestsShouldIncludeAssert -f text -r report.txt
+```
+
+You can find the response here : [report.txt](/report.txt)

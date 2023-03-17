@@ -32,24 +32,75 @@ The constructor throws an exception if the three given integers do not form a va
 
 `compareTo` follows the `Comparable` convention:
 
-* `date.compareTo(other)` returns a positive integer if `date` is posterior to `other`
-* `date.compareTo(other)` returns a negative integer if `date` is anterior to `other`
-* `date.compareTo(other)` returns `0` if `date` and `other` represent the same date.
-* the method throws a `NullPointerException` if `other` is `null` 
+- `date.compareTo(other)` returns a positive integer if `date` is posterior to `other`
+- `date.compareTo(other)` returns a negative integer if `date` is anterior to `other`
+- `date.compareTo(other)` returns `0` if `date` and `other` represent the same date.
+- the method throws a `NullPointerException` if `other` is `null`
 
 Design and implement a test suite for this `Date` class.
-You may use the test cases discussed in classes as a starting point. 
+You may use the test cases discussed in classes as a starting point.
 Also, feel free to add any extra method you may need to the `Date` class.
-
 
 Use the following steps to design the test suite:
 
-1. With the help of *Input Space Partitioning* design a set of initial test inputs for each method. Write below the characteristics and blocks you identified for each method. Specify which characteristics are common to more than one method.
+1. With the help of _Input Space Partitioning_ design a set of initial test inputs for each method. Write below the characteristics and blocks you identified for each method. Specify which characteristics are common to more than one method.
 2. Evaluate the statement coverage of the test cases designed in the previous step. If needed, add new test cases to increase the coverage. Describe below what you did in this step.
-3. If you have in your code any predicate that uses more than two boolean operators check if the test cases written to far satisfy *Base Choice Coverage*. If needed add new test cases. Describe below how you evaluated the logic coverage and the new test cases you added.
+3. If you have in your code any predicate that uses more than two boolean operators check if the test cases written to far satisfy _Base Choice Coverage_. If needed add new test cases. Describe below how you evaluated the logic coverage and the new test cases you added.
 4. Use PIT to evaluate the test suite you have so far. Describe below the mutation score and the live mutants. Add new test cases or refactor the existing ones to achieve a high mutation score.
 
 Use the project in [tp3-date](../code/tp3-date) to complete this exercise.
 
 ## Answer
 
+### 1. Input Space Partitioning
+
+#### isValidDate
+
+| Characteristics | Block 1 | Block2 | Block 3                      | Block 4            | Block 5 | Block 6 |
+| --------------- | ------- | ------ | ---------------------------- | ------------------ | ------- | ------- |
+| Value of year   | < 0     | 0      | Leap year                    | Common year        |
+| Value of month  | < 0     | 0      | { 1, 3, 5, 7, 8, 10, 12}     | { 4, 6, 9, 11 }    | 2       | > 12    |
+| Value of day    | < 0     | 0      | >= 1 and <= max(month, year) | > max(month, year) |         |         |
+
+#### isLeapYear
+
+| Characteristics | Block 1                    | Block2                     | Block3                            | Block4                            |
+| --------------- | -------------------------- | -------------------------- | --------------------------------- | --------------------------------- |
+| Value of year   | year > 0 and year % 4 != 0 | year > 0 and year % 4 == 0 | year % 100 == 0 and year % 4 != 0 | year % 100 == 0 and year % 4 == 0 |
+
+#### nextDay
+
+| Characteristics | Block 1                                                            | Block2                                                         | Block3                                                         | Block4                                                     | Block 5    |
+| --------------- | ------------------------------------------------------------------ | -------------------------------------------------------------- | -------------------------------------------------------------- | ---------------------------------------------------------- | ---------- |
+| Value of Date   | Valid dates in a regular year that are not at the end of the month | Valid dates in a regular year that are at the end of the month | Valid dates in a leap year that are not at the end of February | Valid dates in a leap year that are at the end of February | month > 12 |
+
+#### previousDay
+
+| Characteristics | Block 1                                                | Block2                                                               | Block3                                                            | Block4 |
+| --------------- | ------------------------------------------------------ | -------------------------------------------------------------------- | ----------------------------------------------------------------- | ------ |
+| Value of date   | Valid dates that are not at the beginning of the month | Valid dates in a regular year that are at the beginning of the month | Valid dates in a leap year that are at the beginning of the month |
+
+#### compareTo
+
+| Characteristics | Block 1 | Block2               | Block3                         | Block 4 | Block 5        |
+| --------------- | ------- | -------------------- | ------------------------------ | ------- | -------------- |
+| value of date   | year <> | month <> and year == | day <> and year == and year == | ==      | Object is null |
+
+### Coverage
+
+Class: 100%
+Methods: 100%
+Line: 88%
+
+We have added some test cases and hit 100% coverage for the lines.
+
+### Predicate
+
+No predicate with more than two boolean operators.
+
+### PIT
+
+Line Coverage: 107/114 (94%)
+Generated 103 mutations Killed 100 (97%)
+Mutations with no coverage 0. Test strength 97%
+Ran 297 tests (2.88 tests per mutation)

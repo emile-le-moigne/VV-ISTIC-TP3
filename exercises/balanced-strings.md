@@ -18,7 +18,7 @@ Use the coverage criteria studied in classes as follows:
 
 1. Use input space partitioning to design an initial set of inputs. Explain below the characteristics and partition blocks you identified.
 2. Evaluate the statement coverage of the test cases designed in the previous step. If needed, add new test cases to increase the coverage. Describe below what you did in this step.
-3. If you have in your code any predicate that uses more than two boolean operators check if the test cases written so far satisfy *Base Choice Coverage*. If needed add new test cases. Describe below how you evaluated the logic coverage and the new test cases you added.
+3. If you have in your code any predicate that uses more than two boolean operators check if the test cases written so far satisfy _Base Choice Coverage_. If needed add new test cases. Describe below how you evaluated the logic coverage and the new test cases you added.
 4. Use PIT to evaluate the test suite you have so far. Describe below the mutation score and the live mutants. Add new test cases or refactor the existing ones to achieve a high mutation score.
 
 Write below the actions you took on each step and the results you obtained.
@@ -26,3 +26,39 @@ Use the project in [tp3-balanced-strings](../code/tp3-balanced-strings) to compl
 
 ## Answer
 
+1. The table of inputs :
+
+   | Test Case | Input String | Expected Output |
+   | --------- | ------------ | --------------- |
+   | Case 1    | ""           | true            |
+   | Case 2    | "{}"         | true            |
+   | Case 3    | "[]"         | true            |
+   | Case 4    | "()"         | true            |
+   | Case 5    | "{[]}"       | true            |
+   | Case 6    | "{()[]}"     | true            |
+   | Case 7    | "{[()]}"     | true            |
+   | Case 8    | "{[(){}]}"   | true            |
+   | Case 9    | "{{}}"       | true            |
+   | Case 10   | "[[]]"       | true            |
+   | Case 11   | "{}[]"       | true            |
+   | Case 12   | "{[()]}[]"   | true            |
+   | Case 13   | "("          | false           |
+   | Case 14   | ")"          | false           |
+   | Case 15   | "["          | false           |
+   | Case 16   | "]"          | false           |
+   | Case 17   | "{"          | false           |
+   | Case 18   | "}"          | false           |
+   | Case 19   | "{[)]}"      | false           |
+   | Case 20   | "[}"         | false           |
+   | Case 21   | "a[b(c]d)e"  | false           |
+
+- Case 1 : checks if the empty string is considered balanced.
+- Cases 2-12 : test if the input is balanced.
+- Cases 13-21 : test if the input is unbalanced.
+
+2. We have a 100% coverage.
+
+3. We have no predicate that uses more than two boolean operators.
+
+4. Generated 34 mutations Killed 31 (91%).
+   Test strength 97%

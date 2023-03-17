@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/VV-ISTIC-TP3.iml" filepath="$PROJECT_DIR$/.idea/VV-ISTIC-TP3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/code/tp3-balanced-strings/tp3-balanced-strings.iml" filepath="$PROJECT_DIR$/code/tp3-balanced-strings/tp3-balanced-strings.iml" />
+      <module fileurl="file://$PROJECT_DIR$/code/tp3-date/tp3-date.iml" filepath="$PROJECT_DIR$/code/tp3-date/tp3-date.iml" />
+      <module fileurl="file://$PROJECT_DIR$/code/tp3-heap/tp3-heap.iml" filepath="$PROJECT_DIR$/code/tp3-heap/tp3-heap.iml" />
+      <module fileurl="file://$PROJECT_DIR$/code/tp3-ssl/tp3-ssl.iml" filepath="$PROJECT_DIR$/code/tp3-ssl/tp3-ssl.iml" />
+    </modules>
+  </component>
+</project>
